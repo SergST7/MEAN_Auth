@@ -16,6 +16,9 @@ const app = express();
 //port number
 const  port = 3000;
 
+//set static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 //cors middleware
 app.use(cors());
 
