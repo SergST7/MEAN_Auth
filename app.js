@@ -11,8 +11,16 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+//port number
 const  port = 3000;
 
+//cors middleware
+app.use(cors());
+
+//body-parser middleware
+app.use(bodyParser.json());
+
+//index route
 app.get("/", (req, res) => {
     res.send("Response from server")
 });
