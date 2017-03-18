@@ -8,8 +8,22 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const config = require('./config/database');
 
 const users = require('./routes/users');
+
+//Connect to DB
+mongoose.connect(config.database);
+
+//on connection
+mongoose.connection.on('connected', () => {
+    console.log('connected to DB '+config.database)
+})
+
+//on error
+mongoose.connection.on('error', (err) => {
+    console.log('error to DB '+err)
+})
 
 const app = express();
 
