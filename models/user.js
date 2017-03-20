@@ -4,6 +4,7 @@
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const config = require('../config/database');
 
 
 //User Schema
@@ -34,4 +35,14 @@ module.exports.getUserById = function(id, callback){
 module.exports.getUserByName = function(userName, callback){
     const query = {userName: userName};
     User.findOne(query, callback)
+}
+
+module.exports.addUser = function(newUser, callback){
+    bcrypt.genSalt(10,(err,salt) =>{
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser.save(callback)
+        })
+    })
 }
