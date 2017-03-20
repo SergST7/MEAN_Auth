@@ -4,11 +4,14 @@
 
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 
 //register
-router.get('/register', (req, res, next) => {
+router.post('/register', (req, res, next) => {
     res.send('REGISTER')
-})
+});
 
 //auth
 router.get('/auth', (req, res, next) => {
