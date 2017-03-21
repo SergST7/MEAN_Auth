@@ -37,40 +37,40 @@ router.post('/auth', (req, res, next) => {
         if(!user) {
             return res.json({success: false, msg: 'User not found'})
         }
-    })
 
-    User.comparePassword(password, user.password, (err, isMatch) => {
-        if(err) throw err;
-        if (isMatch) {
-            const token = jwt.sign(user, config.secret, {
-                expiresIn: 60
-            })
+        User.comparePassword(password, user.password, (err, isMatch) => {
+            if(err) throw err;
+            if (isMatch) {
+                const token = jwt.sign(user, config.secret, {
+                    expiresIn: 60
+                })
 
-            res.json({
-                success: true,
-                token: 'JWT '+token,
-                user: {
-                    id: user._id,
-                    name: user.name,
-                    username: user.userName,
-                    email: user.email
-                }
-            })
-        } else {
-            res.json({success: false, msg: 'Wrong password'})
-        }
+                res.json({
+                    success: true,
+                    token: 'JWT '+token,
+                    user: {
+                        id: user._id,
+                        name: user.name,
+                        username: user.userName,
+                        email: user.email
+                    }
+                })
+            } else {
+                res.json({success: false, msg: 'Wrong password'})
+            }
+        })
     })
 
 })
 
 //profile
-router.get('/profile', (req, res, next) => {
-    res.send('PROFILE')
+router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    res.json({user: req.user})
 })
 
 //validate
 router.get('/validate', (req, res, next) => {
-    res.send('VALIDATE')
+    res.json({user: req.user})
 })
 
 module.exports = router;
