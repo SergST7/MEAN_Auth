@@ -13,6 +13,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import {appRouting} from "./app.routing";
 
+import {ValidateService} from "./services/validate.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,7 @@ import {appRouting} from "./app.routing";
     HttpModule,
     appRouting
   ],
-  providers: [],
+  providers: [ValidateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
