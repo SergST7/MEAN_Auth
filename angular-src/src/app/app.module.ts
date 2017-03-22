@@ -15,6 +15,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {appRouting} from "./app.routing";
 
 import {ValidateService} from "./services/validate.service";
+import {AuthService} from "./services/auth.service";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,10 @@ import {ValidateService} from "./services/validate.service";
     appRouting,
     FlashMessagesModule
   ],
-  providers: [ValidateService],
+  providers: [
+    ValidateService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
