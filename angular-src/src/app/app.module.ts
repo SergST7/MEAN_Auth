@@ -11,6 +11,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+import {appRouting} from "./app.routing";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    appRouting
   ],
   providers: [],
   bootstrap: [AppComponent]
