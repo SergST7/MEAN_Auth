@@ -16,6 +16,7 @@ import {appRouting} from "./app.routing";
 
 import {ValidateService} from "./services/validate.service";
 import {AuthService} from "./services/auth.service";
+import {AuthGuard} from "./guards/auth.guard";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {AuthService} from "./services/auth.service";
   ],
   providers: [
     ValidateService,
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
