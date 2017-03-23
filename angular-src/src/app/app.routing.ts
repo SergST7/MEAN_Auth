@@ -9,6 +9,7 @@ import {RegisterComponent} from "./components/register/register.component";
 import {LoginComponent} from "./components/login/login.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {AuthGuard} from "./guards/auth.guard";
 
 
 const routes: Routes = [
@@ -16,8 +17,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
 ];
 
 export const appRouting = RouterModule.forRoot(routes);
